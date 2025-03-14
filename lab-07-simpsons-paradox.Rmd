@@ -1,6 +1,7 @@
 ---
 title: "Lab 07 - Smokers in Whickham"
 subtitle: "Simpson's paradox"
+author: "Yao xing Qian"
 output: 
   tufte::tufte_html:
     tufte_variant: "envisioned"
