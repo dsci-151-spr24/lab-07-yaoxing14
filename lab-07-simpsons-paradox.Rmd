@@ -11,7 +11,7 @@ link-citations: true
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(eval = FALSE)
+knitr::opts_chunk$set(eval = TRUE)
 ```
 
 ```{r fig.margin = TRUE, eval = TRUE, echo = FALSE}
@@ -59,15 +59,37 @@ You can find out more about the dataset by inspecting their documentation, which
 
 1.  What type of study do you think these data come from: observational or experiment?
     Why?
+***This data was from an observational study, there was no assigned treatemt groups for people***
 
 2.  How many observations are in this dataset?
     What does each observation represent?
+    
+ ***There are `r nrow(Whickham)`observations in this dataset. Each observation represents one particular woman in the study.***
 
 3.  How many variables are in this dataset?
     What type of variable is each?
     Display each variable using an appropriate visualization.
 
+***There are `r ncol(Whickham)` variables in the dataset. Both `outcome` and `smoker` are character data that are 2 level factors and `age` is numerical data.***
+    
+```{r}
+ggplot(data = Whickham, aes(y = outcome, fill = outcome)) +
+  geom_bar()+
+  ggtitle("Distribution of outcome")
+```
+```{r}
+ggplot(data = Whickham, aes(y = smoker, fill = smoker)) +
+  geom_bar()+
+  ggtitle("Distribution of smoker")
+```
+```{r}
+ggplot(data = Whickham, aes(x = age)) +
+  geom_histogram(binwidth = 5)+
+  ggtitle("Distribution of Age")
+```
 4.  What would you expect the relationship between smoking status and health outcome to be?
+
+***I expect smokers more likely to be dead***
 
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
 
@@ -86,7 +108,7 @@ Whickham %>%
 
 7.  Re-create the visualization depicting the relationship between smoking status and health outcome, faceted by `age_cat`. What changed? What might explain this change? Extend the contingency table from earlier by breaking it down by age category and use it to help your narrative.
 
-```{r}
+```{r,eval=FALSE}
 Whickham %>%
   count(smoker, age_cat, outcome)
 ```
